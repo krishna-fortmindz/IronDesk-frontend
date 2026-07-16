@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:irondesk/routes/app_routes.dart';
@@ -94,9 +95,11 @@ class LandingView extends StatelessWidget {
                                     "Already have an account? Sign in here.",
                                 icon: Icons.login_rounded,
                                 color: Colors.blue.shade700,
+                                // onTap: () =>
+                                //     context.pushNamed(AppRoute.loginView.name),
                                 onTap: () =>
-                                    context.pushNamed(AppRoute.loginView.name),
-                              ),
+                                    Get.snackbar("Coming Soon", "Login functionality will be available in the next release.", snackPosition: SnackPosition.BOTTOM
+                              ),)
                             ],
                           );
                         } else {

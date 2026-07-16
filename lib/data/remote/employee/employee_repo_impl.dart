@@ -49,7 +49,7 @@ class EmployeeRepoImpl implements EmployeeRepo {
   Future<Either<ApiException, AttendanceHistoryResponse>>
   getAttendanceHistory() async {
     try {
-      final response = await _apiService.get(EndPoints.getEmployeeAttendence);
+      final response = await _apiService.get(EndPoints.getEmployeeAttendance);
       final history = AttendanceHistoryResponse.fromJson(response.data!);
       return right(history);
     } catch (e) {
@@ -89,7 +89,9 @@ class EmployeeRepoImpl implements EmployeeRepo {
   }
 
   @override
-  Future<Either<ApiException, CheckOutResponseModel>> checkOut(CheckOutRequestModel checkOutRequestModel) async {
+  Future<Either<ApiException, CheckOutResponseModel>> checkOut(
+    CheckOutRequestModel checkOutRequestModel,
+  ) async {
     try {
       final response = await _apiService.post(
         endPoint: EndPoints.checkOut,
@@ -100,6 +102,45 @@ class EmployeeRepoImpl implements EmployeeRepo {
     } catch (e) {
       Logger.printError("Check-out Error: $e");
       return left(ApiException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, Datum>> getEmployeeById(String id) async {
+    try {
+      final response = await _apiService.get(
+        "${EndPoints.getEmployeeById}/$id",
+      );
+      final employee = Datum.fromJson(response.data!["data"]);
+      return right(employee);
+    } catch (e) {
+      Logger.printError("Get Employee By ID Error: $e");
+      return left(ApiException("Failed to fetch employee"));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, bool>> deactivateEmployee(String id) async {
+    try {
+      await _apiService.patch(
+        "${EndPoints.deactivateEmployee}/$id/deactivate",
+        {},
+      );
+      return right(true);
+    } catch (e) {
+      Logger.printError("Deactivate Employee Error: $e");
+      return left(ApiException("Failed to deactivate employee"));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, bool>> activateEmployee(String id) async {
+    try {
+      await _apiService.patch("${EndPoints.activateEmployee}/$id/activate", {});
+      return right(true);
+    } catch (e) {
+      Logger.printError("Activate Employee Error: $e");
+      return left(ApiException("Failed to activate employee"));
     }
   }
 }

@@ -73,4 +73,32 @@ class AuthRepoImpl extends AuthRepo {
       return left(ApiException("Something went wrong"));
     }
   }
+
+  @override
+  Future<Either<ApiException, bool>> logout() async {
+    try {
+      await apiClient.post(endPoint: EndPoints.logout);
+      return right(true);
+    } catch (e) {
+      if (e is ApiException) {
+        return left(ApiException(e.toString()));
+      }
+      return left(ApiException("Something went wrong"));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, bool>> assignCompany(
+    Map<String, dynamic> data,
+  ) async {
+    try {
+      await apiClient.post(endPoint: EndPoints.assignCompany, payload: data);
+      return right(true);
+    } catch (e) {
+      if (e is ApiException) {
+        return left(ApiException(e.toString()));
+      }
+      return left(ApiException("Something went wrong"));
+    }
+  }
 }

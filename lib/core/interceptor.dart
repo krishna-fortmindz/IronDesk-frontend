@@ -62,7 +62,7 @@ class AuthInterceptor extends Interceptor {
   Future<void> _refreshToken() async {
     try {
       final response = await dio.post(
-        '${AppConstants.baseUrl}/auth/refresh-tokens',
+        '${AppConstants.baseUrl}/users/refresh-tokens',
         data: {'refreshToken': refreshToken},
       );
 

@@ -20,14 +20,14 @@ class ApiClient {
     dio.options.receiveTimeout = const Duration(minutes: 3);
     dio.options.baseUrl = EndPoints.baseUrl;
     // if (Environment.value.environmentType != EnvType.PRODUCTION) {
-    //   dio.interceptors.add(
-    //     PrettyDioLogger(
-    //       requestHeader: true,
-    //       requestBody: true,
-    //       responseHeader: true,
-    //       responseBody: false,
-    //     ),
-    //   );
+    // dio.interceptors.add(
+    // PrettyDioLogger(
+    //   requestHeader: true,
+    //   requestBody: true,1
+    //   responseHeader: true,
+    //   responseBody: false,
+    // ),
+    // );
     // }
     dio.interceptors.add(
       LogInterceptor(
@@ -104,10 +104,10 @@ class ApiClient {
     try {
       final response = await post(
         endPoint: EndPoints.generateNewToken,
-        payload: {
-          "refreshToken":
-              SharedPreferenceService.getValue(PrefKeys.refreshToken.name) ?? '',
-        },
+        // payload: {
+        //   "refreshToken":
+        //       SharedPreferenceService.getValue(PrefKeys.refreshToken.name) ?? '',
+        // },
       );
 
       final code = response.statusCode ?? 0;
@@ -118,11 +118,17 @@ class ApiClient {
         final String refreshToken = data['refresh']["token"] ?? '';
 
         if (accessToken.isNotEmpty) {
-          SharedPreferenceService.setValue(PrefKeys.accessToken.name, accessToken);
+          SharedPreferenceService.setValue(
+            PrefKeys.accessToken.name,
+            accessToken,
+          );
         }
 
         if (refreshToken.isNotEmpty) {
-          SharedPreferenceService.setValue(PrefKeys.refreshToken.name, refreshToken);
+          SharedPreferenceService.setValue(
+            PrefKeys.refreshToken.name,
+            refreshToken,
+          );
         }
 
         _refreshCompleter?.complete();

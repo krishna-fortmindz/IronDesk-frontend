@@ -34,7 +34,7 @@ class CompanyRepoImpl extends CompanyRepo {
   Future<Either<ApiException, PendingUserResponseModel>>
   getPendingUsers() async {
     try {
-      final res = await apiClient.get(EndPoints.getpendingUser);
+      final res = await apiClient.get(EndPoints.getPendingUsers);
       return right(PendingUserResponseModel.fromJson(res.data!));
     } catch (e) {
       if (e is ApiException) {
@@ -48,7 +48,7 @@ class CompanyRepoImpl extends CompanyRepo {
   Future<Either<ApiException, AllEmployeeAttendenceResponseModel>>
   getEmployeeAttendence() async {
     try {
-      final res = await apiClient.get(EndPoints.getEmployeeAttendence);
+      final res = await apiClient.get(EndPoints.getEmployeeAttendance);
       return right(AllEmployeeAttendenceResponseModel.fromJson(res.data!));
     } catch (e) {
       if (e is ApiException) {

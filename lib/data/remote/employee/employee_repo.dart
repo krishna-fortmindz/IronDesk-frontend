@@ -14,11 +14,15 @@ abstract class EmployeeRepo {
     String id,
     Map<String, dynamic> data,
   );
-  Future<Either<ApiException, AttendanceHistoryResponse>>
-  getAttendanceHistory();
+  Future<Either<ApiException, AttendanceHistoryResponse>> getAttendanceHistory();
   Future<Either<ApiException, CheckInResponseModel>> checkIn(
     CheckInRequestModel checkInRequestModel,
   );
   Future<Either<ApiException, TodayAttendenceResponseModel>> getTodayAttendence();
-  Future<Either<ApiException, CheckOutResponseModel>> checkOut(CheckOutRequestModel checkOutRequestModel);
+  Future<Either<ApiException, CheckOutResponseModel>> checkOut(
+    CheckOutRequestModel checkOutRequestModel,
+  );
+  Future<Either<ApiException, Datum>> getEmployeeById(String id);
+  Future<Either<ApiException, bool>> deactivateEmployee(String id);
+  Future<Either<ApiException, bool>> activateEmployee(String id);
 }

@@ -313,6 +313,7 @@ class _LoginViewState extends ConsumerState<LoginView> with BaseScreenView {
       email: email,
       password: password,
     );
+    Logger.printInfo("Login Request: $loginRequest");
     final loginResponse = await viewModel.login(loginRequest);
     if (loginResponse) {
       final role = viewModel.getDashboardRouteForRole(

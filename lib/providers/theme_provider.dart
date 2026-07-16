@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/legacy.dart';
 
-import '../core/core.dart';
 import '../utils/utils.dart';
 
 final themeProvider = ChangeNotifierProvider.autoDispose<ThemeProvider>((ref) {

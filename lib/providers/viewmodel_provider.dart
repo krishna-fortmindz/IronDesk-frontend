@@ -4,9 +4,7 @@ import 'package:irondesk/view/screen/auth/auth_viewmodel.dart';
 import 'package:irondesk/view/screen/auth/login_viewmodel.dart';
 import 'package:irondesk/view/screen/dashboard/attendance_viewmodel.dart';
 import 'package:irondesk/view/screen/dashboard/company_viewmodel.dart';
-import 'package:irondesk/view/screen/dashboard/requests_viewmodel.dart';
 
-import '../utils/utils.dart';
 
 abstract class ViewModelProvider {
   // static final apiClient = Provider((ref) => ApiClient(ref));

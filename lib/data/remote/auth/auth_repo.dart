@@ -9,7 +9,9 @@ import 'package:dartz/dartz.dart';
 abstract class AuthRepo {
   Future<Either<ApiException, LoginUserResponseModel>> login(LoginUserRequestModel loginRequest);
   Future<Either<ApiException, bool>> updateUserToken(UserTokenUpdate token);
-Future<Either<ApiException, bool>> removeUser();
-Future<Either<ApiException, RegisterUserResponseModel>> registerUser(RegisterUserRequestModel registerUserRequestModel);
+  Future<Either<ApiException, bool>> removeUser();
+  Future<Either<ApiException, RegisterUserResponseModel>> registerUser(RegisterUserRequestModel registerUserRequestModel);
+  Future<Either<ApiException, bool>> logout();
+  Future<Either<ApiException, bool>> assignCompany(Map<String, dynamic> data);
 }
 
